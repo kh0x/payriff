@@ -1,0 +1,16 @@
+require "uri"
+require "net/http"
+
+url = URI("https://api.payriff.com/api/v1/createOrder")
+
+https = Net::HTTP.new(url.host, url.port)
+https.use_ssl = true
+
+request = Net::HTTP::Post.new(url)
+request["Authorization"] = "00e1af0fcb96300193a75250cdac8339053c26ba"
+request["Content-Type"] = "application/json"
+request.body = "{\n  \"body\": {\n    \"approveURL\": \"https://payriff.com/success.html\",\n    \"cancelURL\": \"https://payriff.com/cancel.html\",\n    \"declineURL\": \"https://payriff.com/decline.html\",\n    \"amount\": 1.00,\n    \"currencyType\": \"AZN\",\n    \"description\": \"Payment description text\",\n    \"language\": \"AZ\"\n  },\n  \"encryptionToken\": \"randomEncryptionTokenTest123\",\n  \"merchant\": \"ES1000010\"\n}"
+
+response = https.request(request)
+puts response.read_body
+

@@ -1,0 +1,16 @@
+var data = JSON.stringify({"body":{"approveURL":"https://payriff.com/success.html","cancelURL":"https://payriff.com/cancel.html","declineURL":"https://payriff.com/decline.html","amount":1,"currencyType":"AZN","description":"Payment description text","language":"AZ"},"encryptionToken":"randomEncryptionTokenTest123","merchant":"ES1000010"});
+
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function() {
+  if(this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("POST", "https://api.payriff.com/api/v1/createOrder");
+xhr.setRequestHeader("Authorization", "00e1af0fcb96300193a75250cdac8339053c26ba");
+xhr.setRequestHeader("Content-Type", "application/json");
+
+xhr.send(data);

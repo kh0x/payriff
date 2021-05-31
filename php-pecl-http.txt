@@ -1,0 +1,29 @@
+<?php
+$client = new http\Client;
+$request = new http\Client\Request;
+$request->setRequestUrl('https://api.payriff.com/api/v1/createOrder');
+$request->setRequestMethod('POST');
+$body = new http\Message\Body;
+$body->append('{
+  "body": {
+    "approveURL": "https://payriff.com/success.html",
+    "cancelURL": "https://payriff.com/cancel.html",
+    "declineURL": "https://payriff.com/decline.html",
+    "amount": 1.00,
+    "currencyType": "AZN",
+    "description": "Payment description text",
+    "language": "AZ"
+  },
+  "encryptionToken": "randomEncryptionTokenTest123",
+  "merchant": "ES1000010"
+}');
+$request->setBody($body);
+$request->setOptions(array());
+$request->setHeaders(array(
+  'Authorization' => '00e1af0fcb96300193a75250cdac8339053c26ba',
+  'Content-Type' => 'application/json'
+));
+$client->enqueue($request)->send();
+$response = $client->getResponse();
+echo $response->getBody();
+

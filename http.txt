@@ -1,0 +1,19 @@
+POST /api/v1/createOrder HTTP/1.1
+Host: api.payriff.com
+Authorization: 00e1af0fcb96300193a75250cdac8339053c26ba
+Content-Type: application/json
+Content-Length: 374
+
+{
+  "body": {
+    "approveURL": "https://payriff.com/success.html",
+    "cancelURL": "https://payriff.com/cancel.html",
+    "declineURL": "https://payriff.com/decline.html",
+    "amount": 1.00,
+    "currencyType": "AZN",
+    "description": "Payment description text",
+    "language": "AZ"
+  },
+  "encryptionToken": "randomEncryptionTokenTest123",
+  "merchant": "ES1000010"
+}
